@@ -1,0 +1,8 @@
+Env: dev
+BaseUrl: https://localhost # 网站域名
+Port: 8080 # 端口
+LogFile: /data/logs/iriscn.log # 日志文件
+ShowSql: false # 是否打印sql
+StaticPath: /data/www  # 根路径下的静态文件目录，可配置绝对路径
+
+MysqlURL: root:gqz..0507@tcp(localhost:3306)/iriscn?charset=utf8mb4&parseTime=True&loc=Local

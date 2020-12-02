@@ -1,0 +1,57 @@
+Name: backend
+Repo: ""
+Version: master
+Dest: /home/gqzcl/文档/Iris-cn/backend
+Module: iris-cn
+DisableInlineCommands: false
+DisableNpmInstall: false
+NpmBuildScriptName: build
+Watcher:
+    Disable: false
+    Backend:
+        - .go
+        - .mod
+        - .yml
+        - .toml
+        - .tml
+        - .ini
+        - .proto
+    Frontend:
+        - .html
+        - .htm
+        - .svelte
+        - .md
+        - .js
+        - .ts
+        - .jsx
+        - .tsx
+        - .css
+        - .scss
+        - .less
+        - .json
+        - .proto
+    IgnoreDirs:
+        - .github
+        - .github/*
+        - uploads
+        - uploads/*
+LiveReload:
+    Disable: false
+    Port: 35729
+Files:
+    - .iris.yml
+    - api
+    - auth
+    - cache
+    - conf
+    - go.mod
+    - go.sum
+    - main.go
+    - model
+    - serializer
+    - service
+    - util
+    - vendor
+    - vendor/modules.txt
+BuildFiles: []
+MD5PackageJSON: []
