@@ -9,13 +9,16 @@
 $ sudo pacman -S go
 $ sudo pacman -S vscode
 ```
-将go放入path路径：
+## 将go放入path路径：
+
+```
 $ sudo nano ~/zshrc
 
 PATH="$HOME/go/bin:$PATH"
 
 $ source ~/zshrc
-## 在vscode配置go
+```
+##  在vscode配置go
 
 ## 配置环境
 
