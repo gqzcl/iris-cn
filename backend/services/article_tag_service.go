@@ -1,11 +1,11 @@
-package service
+package services
 
 import (
 	"iris-cn/model"
 	"iris-cn/model/constants"
 	"iris-cn/repositories"
 
-	"github.com/mlogclub/simple"
+	"github.com/gqzcl/simple"
 )
 
 var ArticleTagService = newArticleTagService()

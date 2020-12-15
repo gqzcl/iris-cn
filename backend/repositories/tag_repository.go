@@ -6,8 +6,7 @@ import (
 	"iris-cn/model/constants"
 	"strings"
 
-	"github.com/mlogclub/simple"
-	"github.com/mlogclub/simple/date"
+	"github.com/gqzcl/simple"
 	"gorm.io/gorm"
 )
 
@@ -116,8 +115,8 @@ func (r *tagRepository) GetOrCreate(db *gorm.DB, name string) (*model.Tag, error
 		tag = &model.Tag{
 			Name:       name,
 			Status:     constants.StatusOk,
-			CreateTime: date.NowTimestamp(),
-			UpdateTime: date.NowTimestamp(),
+			CreateTime: simple.NowTimestamp(),
+			UpdateTime: simple.NowTimestamp(),
 		}
 		err := r.Create(db, tag)
 		if err != nil {

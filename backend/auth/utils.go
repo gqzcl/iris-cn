@@ -1,8 +1,11 @@
 package auth
 
 import (
-	"github.com/mlogclub/simple"
-	"github.com/mlogclub/simple/markdown"
+	"iris-cn/conf"
+	"iris-cn/model/constants"
+
+	"github.com/gqzcl/simple"
+	"github.com/gqzcl/simple/markdown"
 
 	"math/rand"
 	"strconv"
@@ -10,13 +13,13 @@ import (
 
 // 是否是正式环境
 func IsProd() bool {
-	return config.Instance.Env == "prod"
+	return conf.Instance.Env == "prod"
 }
 
 func GetSummary(contentType string, content string) (summary string) {
 	if contentType == constants.ContentTypeMarkdown {
 		summary = markdown.GetSummary(content, 256)
-	} else if contentType == constants.ContentTypeHtml {
+	} else if contentType == constants.ContentTypeHTML {
 		summary = simple.GetSummary(simple.GetHtmlText(content), 256)
 	} else {
 		summary = simple.GetSummary(content, 256)

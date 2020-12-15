@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/goburrow/cache"
-	"github.com/mlogclub/simple"
+	"github.com/gqzcl/simple"
 )
 
 type sysConfigCache struct {

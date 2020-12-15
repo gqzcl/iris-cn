@@ -9,7 +9,7 @@ import (
 
 	"github.com/sirupsen/logrus"
 
-	"github.com/mlogclub/simple/strcase"
+	"github.com/gqzcl/simple/strcase"
 )
 
 type GenerateStruct struct {
@@ -144,7 +144,7 @@ func generateWeb(baseDir, pkgName string, s GenerateStruct) error {
 	}
 	c := b.String()
 
-	sub := path.Join("/web/admin/src/views/", strcase.ToKebab(s.Name), "index.vue")
+	sub := path.Join("/web/admin/src/views/", strcase.ToKebab(s.Name), "Index.vue")
 
 	p, err := getFilePath(baseDir, sub)
 	if err != nil {

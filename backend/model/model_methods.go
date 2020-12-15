@@ -4,7 +4,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mlogclub/simple"
+	"github.com/gqzcl/simple"
 )
 
 // IsForbidden 是否禁言

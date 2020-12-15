@@ -1,6 +1,6 @@
 package auth
 
-import "github.com/mlogclub/simple"
+import "github.com/gqzcl/simple"
 
 var (
 	CaptchaError        = simple.NewError(1000, "验证码错误")

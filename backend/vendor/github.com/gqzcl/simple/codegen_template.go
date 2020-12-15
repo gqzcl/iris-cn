@@ -271,6 +271,7 @@ var viewIndexTmpl = template.Must(template.New("index.vue").Parse(`
             </el-pagination>
         </el-col>
 
+
         <!--新增界面-->
         <el-dialog title="新增" :visible.sync="addFormVisible" :close-on-click-modal="false">
             <el-form :model="addForm" label-width="80px" ref="addForm">
@@ -306,6 +307,7 @@ var viewIndexTmpl = template.Must(template.New("index.vue").Parse(`
 
 <script>
   export default {
+    name: "List",
     data() {
       return {
         results: [],
@@ -337,7 +339,6 @@ var viewIndexTmpl = template.Must(template.New("index.vue").Parse(`
 			this.results = data.results
 			this.page = data.page
 		  } catch (e) {
-			this.$notify.error({ title: '错误', message: e || e.message })
 		  } finally {
 			this.listLoading = false
 		  }

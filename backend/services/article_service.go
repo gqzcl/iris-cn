@@ -1,8 +1,10 @@
-package service
+package services
 
 import (
 	"errors"
 	"iris-cn/auth"
+	"iris-cn/auth/urls"
+	"iris-cn/conf"
 	"iris-cn/model"
 	"iris-cn/model/constants"
 	"iris-cn/repositories"
@@ -15,8 +17,7 @@ import (
 
 	"github.com/emirpasic/gods/sets/hashset"
 	"github.com/gorilla/feeds"
-	"github.com/mlogclub/simple"
-	"github.com/mlogclub/simple/date"
+	"github.com/gqzcl/simple"
 	"github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 )
@@ -162,8 +163,8 @@ func (s *articleService) Publish(userId int64, title, summary, content, contentT
 		ContentType: contentType,
 		Status:      status,
 		SourceUrl:   sourceUrl,
-		CreateTime:  date.NowTimestamp(),
-		UpdateTime:  date.NowTimestamp(),
+		CreateTime:  simple.NowTimestamp(),
+		UpdateTime:  simple.NowTimestamp(),
 	}
 
 	err = simple.DB().Transaction(func(tx *gorm.DB) error {
@@ -307,16 +308,16 @@ func (s *articleService) GenerateRss() {
 			Link:        &feeds.Link{Href: articleUrl},
 			Description: description,
 			Author:      &feeds.Author{Name: user.Avatar, Email: user.Email.String},
-			Created:     date.TimeFromTimestamp(article.CreateTime),
+			Created:     simple.TimeFromTimestamp(article.CreateTime),
 		}
 		items = append(items, item)
 	}
 
-	siteTitle := cache.SysConfigCache.GetValue(constants.SysConfigSiteTitle)
-	siteDescription := cache.SysConfigCache.GetValue(constants.SysConfigSiteDescription)
+	siteTitle := cache.SysConfigCache.GetValue(constants.SysConfigsiteTitle)
+	siteDescription := cache.SysConfigCache.GetValue(constants.SysConfigsiteDescription)
 	feed := &feeds.Feed{
 		Title:       siteTitle,
-		Link:        &feeds.Link{Href: config.Instance.BaseUrl},
+		Link:        &feeds.Link{Href: conf.Instance.BaseURL},
 		Description: siteDescription,
 		Author:      &feeds.Author{Name: siteTitle},
 		Created:     time.Now(),
@@ -326,14 +327,14 @@ func (s *articleService) GenerateRss() {
 	if err != nil {
 		logrus.Error(err)
 	} else {
-		_ = simple.WriteString(path.Join(config.Instance.StaticPath, "atom.xml"), atom, false)
+		_ = simple.WriteString(path.Join(conf.Instance.StaticPath, "atom.xml"), atom, false)
 	}
 
 	rss, err := feed.ToRss()
 	if err != nil {
 		logrus.Error(err)
 	} else {
-		_ = simple.WriteString(path.Join(config.Instance.StaticPath, "rss.xml"), rss, false)
+		_ = simple.WriteString(path.Join(conf.Instance.StaticPath, "rss.xml"), rss, false)
 	}
 }
 

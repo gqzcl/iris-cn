@@ -3,7 +3,7 @@ package repositories
 import (
 	"iris-cn/model"
 
-	"github.com/mlogclub/simple"
+	"github.com/gqzcl/simple"
 	"gorm.io/gorm"
 )
 

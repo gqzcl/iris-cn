@@ -7,8 +7,7 @@ import (
 	"time"
 
 	"github.com/goburrow/cache"
-	"github.com/mlogclub/simple"
-	"github.com/mlogclub/simple/date"
+	"github.com/gqzcl/simple"
 )
 
 var (
@@ -36,7 +35,7 @@ func newArticleCache() *articleCache {
 		),
 		hotCache: cache.NewLoadingCache(
 			func(key cache.Key) (value cache.Value, err error) {
-				createTime := date.Timestamp(time.Now().AddDate(0, 0, -3))
+				createTime := simple.Timestamp(time.Now().AddDate(0, 0, -3))
 				value = repositories.ArticleRepository.Find(simple.DB(),
 					simple.NewSqlCnd().Gt("create_time", createTime).Eq("status", constants.StatusOk).Desc("view_count").Limit(5))
 				return
