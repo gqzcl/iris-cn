@@ -1,6 +1,7 @@
 package api
 
 import (
+	"iris-cn/controllers/render"
 	"iris-cn/model/constants"
 	"iris-cn/services"
 
@@ -14,7 +15,7 @@ type Article struct {
 
 //文章详情
 func (c *Article) Getby(articleId int64) *simple.JsonResult {
-	article := service.ArticleService.Get(articleId)
+	article := services.ArticleService.Get(articleId)
 	if article == nil || article.Status == constants.StatusDeleted {
 		return simple.JsonErrorCode(404, "文章不存在")
 	}

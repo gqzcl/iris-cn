@@ -18,6 +18,43 @@ type Config struct {
 	StaticPath string `yaml:"StaticPath"` // 静态文件目录
 
 	MysqlURL string `yaml:"MysqlURL"`
+
+	// 阿里云oss配置
+	Uploader struct {
+		Enable    string `yaml:"Enable"`
+		AliyunOss struct {
+			Host          string `yaml:"Host"`
+			Bucket        string `yaml:"Bucket"`
+			Endpoint      string `yaml:"Endpoint"`
+			AccessId      string `yaml:"AccessId"`
+			AccessSecret  string `yaml:"AccessSecret"`
+			StyleSplitter string `yaml:"StyleSplitter"`
+			StyleAvatar   string `yaml:"StyleAvatar"`
+			StylePreview  string `yaml:"StylePreview"`
+			StyleSmall    string `yaml:"StyleSmall"`
+			StyleDetail   string `yaml:"StyleDetail"`
+		} `yaml:"AliyunOss"`
+		Local struct {
+			Host string `yaml:"Host"`
+			Path string `yaml:"Path"`
+		} `yaml:"Local"`
+	} `yaml:"Uploader"`
+
+	// 百度SEO相关配置
+	// 文档：https://ziyuan.baidu.com/college/courseinfo?id=267&page=2#h2_article_title14
+	BaiduSEO struct {
+		Site  string `yaml:"Site"`
+		Token string `yaml:"Token"`
+	} `yaml:"BaiduSEO"`
+
+	// smtp
+	Smtp struct {
+		Host     string `yaml:"Host"`
+		Port     string `yaml:"Port"`
+		Username string `yaml:"Username"`
+		Password string `yaml:"Password"`
+		SSL      bool   `yaml:"SSL"`
+	} `yaml:"Smtp"`
 }
 
 func Init(filename string) *Config {

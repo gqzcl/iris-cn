@@ -313,8 +313,8 @@ func (s *articleService) GenerateRss() {
 		items = append(items, item)
 	}
 
-	siteTitle := cache.SysConfigCache.GetValue(constants.SysConfigsiteTitle)
-	siteDescription := cache.SysConfigCache.GetValue(constants.SysConfigsiteDescription)
+	siteTitle := cache.SysConfigCache.GetValue(constants.SysConfigSiteTitle)
+	siteDescription := cache.SysConfigCache.GetValue(constants.SysConfigSiteDescription)
 	feed := &feeds.Feed{
 		Title:       siteTitle,
 		Link:        &feeds.Link{Href: conf.Instance.BaseURL},

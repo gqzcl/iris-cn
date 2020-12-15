@@ -5,13 +5,13 @@ const DefaultTokenExpireDays = 7
 
 //系统配置
 const (
-	SysConfigsiteTitle          = "siteTitle"          //站点标题
-	SysConfigsiteDescription    = "siteDescription"    //站点描述
-	SysConfigsiteKeywords       = "siteKeywords"       //站点关键字
-	SysConfigsiteNavs           = "sitenavs"           //站点导航
-	SysConfigsiteNotification   = "siteNotification"   // 站点公告
-	SysConfigsiteRecommendTags  = "recommendTags"      //推荐标签
-	SysConfigsiteURLRedirect    = "urlRedirect"        //是否开启链接跳转
+	SysConfigSiteTitle          = "siteTitle"          //站点标题
+	SysConfigSiteDescription    = "siteDescription"    //站点描述
+	SysConfigSiteKeywords       = "siteKeywords"       //站点关键字
+	SysConfigSiteNavs           = "sitenavs"           //站点导航
+	SysConfigSiteNotification   = "siteNotification"   // 站点公告
+	SysConfigSiteRecommendTags  = "recommendTags"      //推荐标签
+	SysConfigSiteURLRedirect    = "urlRedirect"        //是否开启链接跳转
 	SysConfigScoreConfig        = "scoreConfig"        // 分数配置
 	SysConfigDefaultNodeID      = "defaultNodeId"      // 发帖默认节点
 	SysConfigArticlePending     = "articlePending"     // 是否开启文章审核
