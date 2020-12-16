@@ -7,6 +7,7 @@ import (
 	"iris-cn/auth/urls"
 	"iris-cn/auth/validate"
 	"iris-cn/model/constants"
+	"net/http"
 	"strconv"
 	"strings"
 	"time"
@@ -103,37 +104,37 @@ func (s *userService) Scan(callback func(users []model.User)) {
 	}
 }
 
-// Forbidden 禁言
-// func (s *userService) Forbidden(operatorId, userId int64, days int, reason string, r *http.Request) error {
-// 	var forbiddenEndTime int64
-// 	if days == -1 { // 永久禁言
-// 		forbiddenEndTime = -1
-// 	} else if days > 0 {
-// 		forbiddenEndTime = simple.Timestamp(time.Now().Add(time.Hour * 24 * time.Duration(days)))
-// 	} else {
-// 		return errors.New("禁言时间错误")
-// 	}
-// 	if repositories.UserRepository.UpdateColumn(simple.DB(), userId, "forbidden_end_time", forbiddenEndTime) == nil {
-// 		description := ""
-// 		if simple.IsNotBlank(reason) {
-// 			description = "禁言原因：" + reason
-// 		}
-// 		OperateLogService.AddOperateLog(operatorId, constants.OpTypeForbidden, constants.EntityUser, userId,
-// 			description, r)
-// 	}
-// 	return nil
-// }
+//Forbidden 禁言
+func (s *userService) Forbidden(operatorId, userId int64, days int, reason string, r *http.Request) error {
+	var forbiddenEndTime int64
+	if days == -1 { // 永久禁言
+		forbiddenEndTime = -1
+	} else if days > 0 {
+		forbiddenEndTime = simple.Timestamp(time.Now().Add(time.Hour * 24 * time.Duration(days)))
+	} else {
+		return errors.New("禁言时间错误")
+	}
+	if repositories.UserRepository.UpdateColumn(simple.DB(), userId, "forbidden_end_time", forbiddenEndTime) == nil {
+		description := ""
+		if simple.IsNotBlank(reason) {
+			description = "禁言原因：" + reason
+		}
+		OperateLogService.AddOperateLog(operatorId, constants.OpTypeForbidden, constants.EntityUser, userId,
+			description, r)
+	}
+	return nil
+}
 
-// // RemoveForbidden 移除禁言
-// func (s *userService) RemoveForbidden(operatorId, userId int64, r *http.Request) {
-// 	user := s.Get(userId)
-// 	if user == nil || !user.IsForbidden() {
-// 		return
-// 	}
-// 	if repositories.UserRepository.UpdateColumn(simple.DB(), userId, "forbidden_end_time", 0) == nil {
-// 		OperateLogService.AddOperateLog(operatorId, constants.OpTypeRemoveForbidden, constants.EntityUser, userId, "", r)
-// 	}
-// }
+// RemoveForbidden 移除禁言
+func (s *userService) RemoveForbidden(operatorId, userId int64, r *http.Request) {
+	user := s.Get(userId)
+	if user == nil || !user.IsForbidden() {
+		return
+	}
+	if repositories.UserRepository.UpdateColumn(simple.DB(), userId, "forbidden_end_time", 0) == nil {
+		OperateLogService.AddOperateLog(operatorId, constants.OpTypeRemoveForbidden, constants.EntityUser, userId, "", r)
+	}
+}
 
 // GetByEmail 根据邮箱查找
 func (s *userService) GetByEmail(email string) *model.User {

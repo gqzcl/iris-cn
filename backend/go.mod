@@ -6,6 +6,7 @@ require (
 	github.com/PuerkitoBio/goquery v1.6.0
 	github.com/aliyun/aliyun-oss-go-sdk v2.1.5+incompatible
 	github.com/baiyubin/aliyun-sts-go-sdk v0.0.0-20180326062324-cfa1a18b161f // indirect
+	github.com/dchest/captcha v0.0.0-20200903113550-03f5f0333e1f
 	github.com/emirpasic/gods v1.12.0
 	github.com/flosch/pongo2/v4 v4.0.1 // indirect
 	github.com/go-resty/resty/v2 v2.3.0
